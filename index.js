@@ -7,18 +7,17 @@ const nacl= require('tweetnacl');
 const uint8ToBase64 = (arr) => Buffer.from(arr).toString('base64');
 
 function Keypair(publicKey, privateKey) {
-    this.publicKey = publicKey;
-    this.privateKey = privateKey;
-  }
+  this.publicKey = publicKey;
+  this.privateKey = privateKey;
+}
 
-  
-// Mnemonic
+// Create mnemonic
 const mnemonic = ethers.Wallet.createRandom().mnemonic.phrase
 
-// Ethereum
+// Get Ethereum wallet from mnemonic
 const wallet = ethers.Wallet.fromMnemonic(mnemonic)
 
-// Solana
+// Get Solana wallet from mnemonic
 let path = "m/44'/501'/0'/0'";
 const seed = bip39.mnemonicToSeedSync(mnemonic); 
 const derivedSeed = ed.derivePath(path, seed.toString('hex')).key;
